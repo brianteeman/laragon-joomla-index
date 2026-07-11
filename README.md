@@ -143,3 +143,4 @@ Keeping everything in one PHP file means:
 
 Sometimes simple is better.
 
+But if you are looking for something more complex you should take a look at https://github.com/LebToki/Laragon-Dashboard
