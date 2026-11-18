@@ -4,7 +4,7 @@ A simple single-file PHP dashboard for Laragon that displays information about y
 
 Designed to replace the default Laragon landing page with a cleaner, more useful overview of your development server specifically for Joomla developers.
 
-<img width="929" height="548" alt="image" src="https://github.com/user-attachments/assets/3279bafa-ae9c-4ed9-8165-9110a739ae51" />
+<img width="1229" height="654" alt="joomla index" src="https://github.com/user-attachments/assets/8e4752e5-8ec5-45fb-ba22-b03279e3d0ca" />
 
 
 ## Features
