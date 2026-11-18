@@ -165,3 +165,6 @@ Keeping everything in one PHP file means:
 Sometimes simple is better.
 
 But if you are looking for something more complex you should take a look at https://github.com/LebToki/Laragon-Dashboard
+
+## Credits
+@drmenzelit for the change to include the specific Joomla version and the Git Repository label
