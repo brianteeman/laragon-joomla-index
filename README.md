@@ -23,9 +23,13 @@ Designed to replace the default Laragon landing page with a cleaner, more useful
 
     https://example.test
 
-- Detects Joomla installations and provides a direct link to the administrator area:
+- Detects Joomla installations by checking for the Joomla manifest:
+  - Displays the exact Joomla version from `administrator/manifests/files/joomla.xml`
+  - Provides a direct link to the administrator area:
 
     https://example.test/administrator
+
+- Detects Git repositories by checking for a `.git` file or directory and displays a **Git Repository** label.
 
 - Includes embedded SVG icons.
 
@@ -63,15 +67,14 @@ Your local development dashboard will be displayed.
 
 The dashboard scans the Laragon `www` directory and checks each folder.
 
-Ignored directories include:
+The dashboard skips the following entries:
 
-- `logs`
-- `access-logs`
-- `vendor`
-- `assets`
-- `favicon_io`
+- `.`
+- `..`
+- `.git`
+- `.github`
 
-Additional folders can be added to the ignore list inside the PHP file.
+These entries are listed in the `$ignoreDirs` array. You can add other directory names to this array if you do not want them displayed.
 
 ---
 
@@ -84,9 +87,24 @@ A project is identified as Joomla when the following file exists:
 When detected, the dashboard displays:
 
 - Joomla branding
+- The exact Joomla version read from the manifest's `<version>` element
 - A link to the administrator login page
 
     https://project.test/administrator
+
+The version is displayed alongside the Joomla label above the Admin link.
+
+---
+
+## Git Repository Detection
+
+A project is identified as a Git repository when a `.git` entry exists in its root directory:
+
+    file_exists($host . '/.git')
+
+This works for both standard Git repositories, where `.git` is a directory, and Git worktrees or submodules, where `.git` can be a file.
+
+When detected, the dashboard displays a **Git Repository** label beneath the project name. Git detection is independent of Joomla detection, so a Joomla project that is also a Git repository displays both its Joomla version and the Git Repository label.
 
 ---
 
@@ -113,7 +131,10 @@ Edit the CSS:
 Update the ignore list:
 
     $ignoreDirs = [
-        'logs',
+        '.',
+        '..',
+        '.git',
+        '.github',
         'vendor'
     ];
 
